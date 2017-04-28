@@ -37,7 +37,11 @@ let login = Agent.getInstance().startUseCase(name: "login", root: root)
 // start a remotecall
 let rc = Agent.getInstance().startRemotecall(name: "login-remote", parent: login, url: "" ,httpMethod: "GET", timeout: 4.0, request: &request)
 
+//
 // .. perform
+//
+
+// close the remote call
 Agent.getInstance().closeRemoteCall(span: rc, responseCode: response.1, timeout: response.2)
 
 // closing the root forces all children to be closed as well
